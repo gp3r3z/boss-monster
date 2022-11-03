@@ -1,0 +1,18 @@
+.bg-img {
+    background-image: url(https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9yZXN0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60);
+    background-position: center;
+    background-size: cover;
+}
+
+.container-fluid {
+    min-height: 100vh;
+}
+
+img {
+    width: 10vw;
+    height: 10vh;
+}
+
+.select:hover {
+    cursor: crosshair;
+}
