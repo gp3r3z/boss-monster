@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Title</title>
+    <title>Boss-Battle</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -25,15 +25,25 @@
     <main class="container-fluid bg-img">
       <!-- SECTION HEROES -->
       <section class="row">
-        <div class="col-3 border border-white m-5 text-center text-white">
+        <div
+          id="hero1"
+          class="col-3 border border-white m-5 text-center text-white"
+        >
           <i class="mdi mdi-alien"></i>
-          <h4>Hero 1</h4>
-          <h4>HP:</h4>
+          <h4>Hero: <span id="hero-nameA">Mario</span></h4>
+          <h4>Gold: <span id="hero-goldA">0</span></h4>
+          <h4>Lvl: <span id="hero-lvlA">1</span></h4>
+          <h4>HP: <span id="hero-hpA">100</span></h4>
         </div>
-        <div class="col-3 border border-white m-5 text-center text-white">
+        <div
+          id="hero2"
+          class="col-3 border border-white m-5 text-center text-white"
+        >
           <i class="mdi mdi-alien"></i>
-          <h4>Hero 2</h4>
-          <h4>HP:</h4>
+          <h4>Hero: <span id="hero-nameB">Luigi</span></h4>
+          <h4>Gold: <span id="hero-goldB">0</span></h4>
+          <h4>Lvl: <span id="hero-lvlB">1</span></h4>
+          <h4>HP: <span id="hero-hpB">100</span></h4>
         </div>
       </section>
 
@@ -42,7 +52,7 @@
         <div class="col-6 border border-white text-white text-center">
           <i onclick="heroAttack()" class="mdi mdi-alien select"></i>
           <h1>Boss</h1>
-          <h3>HP: <span id="boss-hp">110</span></h3>
+          <h3>HP: <span id="boss-hp">100</span></h3>
 
           <div class="progress" id="boss-hp-bar">
             <div
@@ -50,7 +60,7 @@
               role="progressbar"
               aria-label="Basic example"
               style="width: 100%"
-              aria-valuenow="25"
+              aria-valuenow="100"
               aria-valuemin="0"
               aria-valuemax="100"
             ></div>
@@ -63,9 +73,19 @@
       <!-- SECTION Buy -->
       <section class="row">
         <div class="col-5 border border-white text-white m-5">
-          <h3>Buy potion</h3>
-          <h3>Buy hero 3</h3>
-          <h3>Buy hero 4</h3>
+          <!-- SECTION buy options -->
+          <section class="row justify-content-between">
+            <div class="col-5">
+              <h3>Buy potion</h3>
+              <h3>Buy Hero A</h3>
+              <h3>Buy hero B</h3>
+            </div>
+            <div class="col-4">
+              <h3>10G</h3>
+              <h3>20G</h3>
+              <h3>30G</h3>
+            </div>
+          </section>
         </div>
         <div class="col-4 m-5 d-flex align-items-end justify-content-end">
           <button>RESET</button>

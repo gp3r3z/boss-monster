@@ -1,15 +1,21 @@
 const heroes = [
     {
+
         name: 'Mario',
         type: 'dwarf',
         damage: 5,
-        health: 50
+        health: 100,
+        level: 1,
+        gold: 0
     },
     {
+
         name: 'Luigi',
         type: 'elf',
         damage: 10,
-        health: 50
+        health: 100,
+        level: 1,
+        gold: 0
     }
 ]
 
@@ -21,23 +27,45 @@ const boss = {
     damage: 5,
     level: 1
 }
-// appears these are creating new values rather than manipulating the object itself ... interesting
 
-function update() {
-    console.log("Updating some shizz")
+function updateBoss() {
+    console.log("Boss object updating")
     let bossHPElm = document.getElementById('boss-hp-bar')
     let bossHealthBar = bossHPElm.querySelector('.progress-bar')
     bossHealthBar.style.width = boss.health + '%'
-
+    // bossHealthBar.ariaValueMax = boss.maxHealth
+    // TODO when progress bar is over 100 health indicator doesn't follow but i can update the values ? appears its style
+    // bossHealthBar.ariaValueNow = boss.health
+    // console.log("Boss maxhealth:", boss.maxHealth, "Aria max value:", bossHealthBar.ariaValueMax, "Aria value Now: ", bossHealthBar.ariaValueNow, "")
+    console.log("boss style width ", bossHealthBar.style.width)
     document.getElementById('boss-hp').innerText = boss.health
     document.getElementById('boss-lvl').innerText = boss.level
 }
+function updateHero(hero) {
+
+
+    if (hero.name == 'Mario') {
+        document.getElementById('hero-nameA').innerText = hero.name
+        document.getElementById('hero-lvlA').innerText = hero.level
+        document.getElementById('hero-goldA').innerText = hero.gold
+        document.getElementById('hero-hpA').innerText = hero.health
+    }
+    if (hero.name == 'Luigi') {
+        document.getElementById('hero-nameB').innerText = hero.name
+        document.getElementById('hero-lvlB').innerText = hero.level
+        document.getElementById('hero-goldB').innerText = hero.gold
+        document.getElementById('hero-hpB').innerText = hero.health
+    }
+}
+
+
 
 function heroAttack() {
     // debugger
     if (boss.health <= 0) {
         console.log("Boss is dead")
         bossLevelUp()
+        heroLevelUp()
     } else {
 
         let totalAttack = 0
@@ -50,16 +78,6 @@ function heroAttack() {
             if (h.health > 0) {
                 console.log(h.name, "is hitting boss with attack points of ", h.damage)
                 totalAttack = totalAttack + h.damage
-
-                // monsterHealth = monsterHealth - totalAttack
-                // boss.health = monsterHealth
-
-                // console.log(boss)
-
-                // if (boss.health <= 0) {
-                //     console.log("boss is dead")
-                //     bossLevelUp()
-                // }
             }
 
 
@@ -70,16 +88,33 @@ function heroAttack() {
 
     }
 
-    update()
+    updateBoss()
 }
+function heroLevelUp() {
+    console.log("Leveling up Hero ")
+    let gold = 0
+    gold++
 
+    heroes.forEach(h => {
+        h.gold = gold
+        h.level++
+        console.log(("adding gold"), h.gold);
+        updateHero(h)
+    })
+
+
+
+
+
+}
 function bossLevelUp() {
 
-    console.log("Leveling up ")
+
+    console.log("Leveling up Boss ")
     boss.level++
-    boss.maxHealth = boss.maxHealth + boss.maxHealth
+    boss.maxHealth = boss.maxHealth * boss.level
     boss.health = boss.maxHealth
-    console.log(boss)
+    console.log('Boss new maxx health', boss.maxHealth)
 }
 
 
@@ -88,15 +123,30 @@ function bossAttack() {
     let bossAttack = boss.damage
     let bossLevel = boss.level
     heroes.find(h => {
+
         if (h.health > 0) {
             h.health = h.health - (bossAttack * boss.level)
             console.log("This is the heros health", h.health)
+
         }
         else {
-            window.confirm('GAME OVER')
+            // window.confirm('GAME OVER')
             clearInterval(monsterInterval)
+            console.log("Game over")
         }
+
+
+
+        updateHero(h)
     })
 }
 
-// let monsterInterval = setInterval(bossAttack, 1000);
+// let monsterInterval = setInterval(bossAttack, 1500);
+
+
+function getPaid() {
+    console.log("Getting money")
+    let gold = 0
+
+
+}
