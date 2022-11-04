@@ -16,14 +16,12 @@ const heroes = [
 
 const boss = {
     name: 'Bowser',
-    health: 100,
+    health: 15,
     maxHealth: 100,
     damage: 5,
     level: 3
 }
-
-let monsterName = boss.name
-let monsterHealth = boss.health
+// appears these are creating new values rather than manipulating the object itself ... interesting
 
 function update() {
     console.log("Updating some shizz")
@@ -32,33 +30,53 @@ function update() {
 }
 
 function heroAttack() {
-    let totalAttack = 0
-    console.log('Attacking Boss')
-    if (heroes.health <= 0) {
-        window.alert('You dead')
-        return
-    }
-    // boss.health -= heroes.damage
-    heroes.forEach(h => {
-        if (h.health > 0) {
-            console.log("hitting boss")
-            totalAttack += h.damage
-            monsterHealth = monsterHealth - totalAttack
-            boss.health = monsterHealth
+    // debugger
+    if (boss.health <= 0) {
+        console.log("Boss is dead")
+        bossLevelUp()
+    } else {
 
-            console.log(boss)
-
-            if (boss.health <= 0) {
-                console.log("boss is dead")
-                bossLevelUp()
-            }
+        let totalAttack = 0
+        console.log('Attacking Boss')
+        if (heroes.health <= 0) {
+            window.alert('You dead')
+            return
         }
-    })
+        heroes.forEach(h => {
+            if (h.health > 0) {
+                console.log(h.name, "is hitting boss with attack points of ", h.damage)
+                totalAttack = totalAttack + h.damage
 
-    update()
+                // monsterHealth = monsterHealth - totalAttack
+                // boss.health = monsterHealth
+
+                // console.log(boss)
+
+                // if (boss.health <= 0) {
+                //     console.log("boss is dead")
+                //     bossLevelUp()
+                // }
+            }
+
+
+        })
+        boss.health = boss.health - totalAttack
+        console.log(boss.name, "took ", totalAttack, "Boss life is", boss.health)
+
+        console.log(boss.health)
+
+
+
+    }
+
+
+
+    // update()
 }
 
 function bossLevelUp() {
+
+    console.log("")
     boss.level++
     boss.maxHealth = 100
     boss.health = boss.maxHealth
@@ -66,7 +84,7 @@ function bossLevelUp() {
 
 
 function bossAttack() {
-    console.log('attack heroes');
+    console.log('Attacking heroes');
     let bossAttack = boss.damage
     let bossLevel = boss.level
     heroes.find(h => {
@@ -81,4 +99,4 @@ function bossAttack() {
     })
 }
 
-let monsterInterval = setInterval(bossAttack, 10000);
+// let monsterInterval = setInterval(bossAttack, 10000);
