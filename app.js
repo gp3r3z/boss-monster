@@ -19,7 +19,7 @@ const boss = {
     health: 15,
     maxHealth: 100,
     damage: 5,
-    level: 3
+    level: 1
 }
 // appears these are creating new values rather than manipulating the object itself ... interesting
 
@@ -62,24 +62,20 @@ function heroAttack() {
         })
         boss.health = boss.health - totalAttack
         console.log(boss.name, "took ", totalAttack, "Boss life is", boss.health)
-
         console.log(boss.health)
-
-
 
     }
 
-
-
-    // update()
+    update()
 }
 
 function bossLevelUp() {
 
-    console.log("")
+    console.log("Leveling up ")
     boss.level++
     boss.maxHealth = 100
     boss.health = boss.maxHealth
+    console.log(boss)
 }
 
 
@@ -99,4 +95,4 @@ function bossAttack() {
     })
 }
 
-// let monsterInterval = setInterval(bossAttack, 10000);
+// let monsterInterval = setInterval(bossAttack, 1000);
