@@ -16,7 +16,7 @@ const heroes = [
 
 const boss = {
     name: 'Bowser',
-    health: 15,
+    health: 100,
     maxHealth: 100,
     damage: 5,
     level: 1
@@ -25,7 +25,11 @@ const boss = {
 
 function update() {
     console.log("Updating some shizz")
-    document.getElementById('boss-hp').innerText = boss.maxHealth
+    let bossHPElm = document.getElementById('boss-hp-bar')
+    let bossHealthBar = bossHPElm.querySelector('.progress-bar')
+    bossHealthBar.style.width = boss.health + '%'
+
+    document.getElementById('boss-hp').innerText = boss.health
     document.getElementById('boss-lvl').innerText = boss.level
 }
 
@@ -73,7 +77,7 @@ function bossLevelUp() {
 
     console.log("Leveling up ")
     boss.level++
-    boss.maxHealth = 100
+    boss.maxHealth = boss.maxHealth + boss.maxHealth
     boss.health = boss.maxHealth
     console.log(boss)
 }
